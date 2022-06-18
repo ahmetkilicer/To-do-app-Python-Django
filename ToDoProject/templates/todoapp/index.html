@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} Home Page{% endblock title %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock css %}
+{% block content1 %}
+    <!--JUMBOTRON-->
+    <div class="p-2 mb-2 bg-light rounded-3 content1">
+      <div class="container-fluid py-2">
+        <h1 class="display-6  text-center">WELCOME</h1>
+        <p class="col-12 fs-4 text-center mt-1">Lets Make Some Plans!</p>
+        <a class="nav-link" href="{% url 'create' %}" style="width:100%; display:flex; justify-content: center;"><button class="btn btn-outline-success" type="button">Create TO-DO</button></a>
+      </div>
+    </div>
+    <!--/JUMBOTRON-->
+{% endblock content1 %}
+
+{% block content2 %}
+<div class="container content2">
+  
+  <table class="table align-middle">
+    <thead>
+      <tr class="row">
+        <th class="col-3" scope="col">&nbsp&nbsp&nbsp&nbspTo-do</th>
+        <th class="col-3" scope="col">&nbsp&nbspDescription</th>
+        <th class="col-2" scope="col">Finished</th>
+        <th class="col-2 text-center" scope="col" style="margin-left:-10px;">Urgent</th>
+        <th class="col-1" scope="col"></th>
+        <th class="col-1" scope="col"></th>
+      </tr>
+    </thead>
+  </table>
+
+  {% for todo in todos %}
+  {% if todo.done %}
+    <div class="alert alert-success" role="alert">
+  {% elif todo.urgent %}
+      <div class="alert alert-danger" style="border-color:red;" role="alert">
+  {% else %}
+       <div class="alert alert-warning" role="alert">
+  {% endif %}
+  
+    <table class="table">
+    <thead>
+      <tr class="row">
+      {% if todo.done %}
+        <td class="col-3 text-decoration-line-through" style="color: green;" scope="col">{{todo.title}}</td>
+        <td class="col-3" scope="col">{{todo.description}}</td>
+        <td class="col-2" scope="col"><a href="{% url 'yes_finish' todo.id %}" class="btn btn-success" type="button">Yes</a></td>
+      {% else %}
+        <td class="col-3" style="color:rgb(241, 83, 83);" scope="col">{{todo.title}}</td>
+        <td class="col-3" scope="col">{{todo.description}}</td>
+        <td class="col-2" scope="col"><a href="{% url 'no_finish' todo.id %}" class="btn btn-warning" type="button">No</a></td>
+      {% endif %}
+        
+        
+        
+        {% if todo.urgent %}
+        <td class="col-2 text-center" scope="col">!URGENT!</td>
+        {% else %}
+        <td class="col-2 text-center" scope="col">Normal</td>
+        {% endif %}
+        <td class="col-1" scope="col"> <a class="nav-link" href="{% url 'update' todo.id %}" style="width:100%; display:flex; justify-content: center;"><button class="btn btn-outline-success" type="button">Update</button></a></td>
+        <td class="col-1" scope="col"> <a class="nav-link" href="{% url 'delete' todo.id %}" style="width:100%; display:flex; justify-content: center;"><button class="btn btn-danger" type="button">Delete</button></a></td>
+      </tr>
+    </thead>
+  </table>
+  </div>
+  {% endfor %}
+
+
+
+</div>
+  
+{% endblock content2 %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block navbar %}
+  {% include "partials/_navbar2.html" %}
+{% endblock navbar %}
+
+{% block title %} Create{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock css %}
+
+{% block content1 %}
+    <!--JUMBOTRON-->
+    <div class="p-2 mb-2 bg-light rounded-3 content1">
+      <div class="container-fluid py-5">
+        <h1 class="display-4  text-center pb-1">Update Your To-Do's</h1>
+
+        
+
+        
+        <form method="POST" class="col-6" style="margin: 0 auto;">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampTextInput" class="form-label">Title</label>
+              <input type="text" name="title" value="{{todo.title}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{todo.description}}</textarea>
+              </div>
+              <div class="form-check form-switch">
+                {% if todo.urgent %}
+                <input class="form-check-input" type="checkbox" name="urgent" role="switch" id="flexSwitchCheckDefault" checked>
+                {% else %}
+                <input class="form-check-input" type="checkbox" name="urgent" role="switch" id="flexSwitchCheckDefault">
+                {% endif %}
+                
+                <label class="form-check-label" for="flexSwitchCheckDefault">Urgent?</label>
+              </div>
+              {% if error %}
+              <div class="alert alert-danger mt-4" style="margin-bottom:-15px;" role="alert">
+                {{error}}
+              </div>
+              {% endif %}
+            <button type="submit" class="btn btn-success mt-5">Uptade</button>
+          </form>
+{% endblock content1 %}
+
+
+
+
+
+{% block js %}
+
+{% endblock js %}

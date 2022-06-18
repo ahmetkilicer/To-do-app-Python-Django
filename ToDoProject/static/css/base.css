@@ -1,0 +1,10 @@
+.content1{
+    margin-top: 60px;
+}
+.form-check-input:checked{
+background-color:#ff000d;
+border-color:#d46a81
+}
+.content2{
+    margin-bottom: 80px;
+}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block navbar %}
+  {% include "partials/_navbar2.html" %}
+{% endblock navbar %}
+
+{% block title %} About{% endblock title %}
+
+{% block content1 %}
+    <!--JUMBOTRON-->
+    <div class="p-2 mb-2 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-3  text-center pb-1">TO-DO APP</h1>
+        <p class="col-12 fs-4 text-center mt-4 pb-4">This is a basic to-do app.</p>
+        <p class="col-12 fs-4 text-center mt-4 pb-4">That App include Basic HTML-CSS-BOOTSTRAP</p>
+        <p class="col-12 fs-4 text-center mt-4 pb-4">And DJANGO!</p>
+        <p class="col-12 fs-4 text-center mt-4 pt-1 pb-4">I hope you will like it</p>
+        
+        <a href="{% url 'index' %}" class="nav-link" style="width:100%; display:flex; justify-content: center;"><button class="btn btn-outline-success" type="button">Back to Home</button></a>
+      </div>
+    </div>
+    <!--/JUMBOTRON-->
+{% endblock content1 %}
