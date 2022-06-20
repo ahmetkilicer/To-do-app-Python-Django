@@ -49,5 +49,5 @@ def update(request,id):
             form.save()
             return redirect("index")
         else :
-            return render(request,"todoapp/create.html",{"error":"Please enter a title!"})
+            return render(request,"todoapp/update.html",{"error":"Please enter a title!" , "todo":todo})
     return render (request, "todoapp/update.html" ,{"todo":todo})
